@@ -20,16 +20,63 @@
  */
 
 var maleCount = function(array) {
-  
+    /*
+    let count = 0;
+    for(var i = 0; i < array.length; i++){
+        if(array[i].gender === 'male'){
+            count += 1;
+        }
+    }
+    return count;
+};
+*/
+
+const males = _.filter(array, function(customer){
+    return customer.gender === 'male';
+
+});
+
+return males.length;
+
 };
 
-var femaleCount;
 
-var oldestCustomer;
+var femaleCount = function(array){
+    
 
-var youngestCustomer;
+};
 
-var averageBalance;
+var oldestCustomer = function(array){
+    let oldestAge = array[0];
+    for(var i = 0; i < array.length; i++){
+        if(array[i].age > oldestAge.age){
+           oldestAge = array[i]
+        }
+
+    }
+    return oldestAge.name
+    
+};
+
+var youngestCustomer = function(array){
+    let youngestAge = array[0]
+    for(var i = 0; i < array.length; i++){
+        if(array[i].age < youngestAge.age){
+            youngestAge = array[i]
+        }
+    }
+    return youngestAge.name
+
+};
+
+var averageBalance = function(array){
+    let sum = 0
+    let average = _.filter(array, function(balance){
+        return array.balance / 
+
+    });
+
+};
 
 var firstLetterCount;
 
