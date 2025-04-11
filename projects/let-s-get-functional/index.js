@@ -42,6 +42,14 @@ return males.length;
 
 
 var femaleCount = function(array){
+    return array.reduce(function(acc, current){
+        if(current.gender === 'female'){
+            return acc += 1
+        }else{
+            return acc;
+        }
+
+    }, 0)
     
 
 };
@@ -85,25 +93,98 @@ var averageBalance = function(array){
 
 
 var firstLetterCount = function(array, letter){
-    let sum = 0;
-    for(var i = 0; i < array.length; i++){
+    return array.reduce(function(acc, current){
+        let currLower = current.name[0].toLowerCase();//make the first letter on the current iteration name case sentitive
+        let charLower = letter.toLowerCase();//make the letter being searched for case sensitive
         
-        if(array[i].name[0] === letter){
-            sum += 1;
+
+        if(charLower === currLower){//if the current iteration letter equal to the target letter
+            return acc += 1//increment acc by 1
+        }else{
+            return acc;//if not just return acc;
         }
+    
+
+    }, 0)//start acc at zero 
+    
+}
+
+var friendFirstLetterCount = function(array, customer, letter){
+    let count = 0;
+    let lower = letter.toLowerCase();
+    for(var i = 0; i < array.length; i++){//iterate over the array
+        if(array[i].name === customer){//if the current iterations name is equal to the given customer name 
+            let friends = array[i].friends;//let friends be equal to the current iteration in their friends array
+
+            for(var j = 0; j < friends.length; j++){//now iterate over the friends array
+                let firstLet = friends[j].name[0].toLowerCase()//lower case the names in the friends array
+                if(lower === firstLet){
+                    count += 1
+                }             
+        }
+    }
 
     }
-    return sum;
+    return count;
+    
+
+
+};
+
+var friendsCount = function(array, name){
+    let output = []
+    for(var i = 0; i < array.length; i++){
+       let customer = array[i]
+       let friends = customer.friends
+       for(var j = 0; j < friends.length; j++){
+        if(friends[j].name === name){
+            output.push(customer.name)
+
+        }
+        
+       }    
+        //if customer has name in friends list push customer  
+    }
+    return output; 
+    
+};
+
+var topThreeTags = function(array){
+    let tagCount = array.reduce(function(acc, current){ //use reduce to accumulate amount of tags
+       let tag = current.tags  
+       for(var i = 0; i < tag.length; i++){
+        let tags = tag[i]
+
+        if(acc[tags]){
+            acc[tags]++
+        }else{
+            acc[tags] = 1;
+        }
+    }
+    return acc;
+
+    }, {});
+
+    var sorted = Object.keys(tagCount).sort(function(a, b) {//sort the tags in decending order
+        return tagCount[b] - tagCount[a];
+      });
+    
+      // Step 3: Return the top 3 tags
+      return sorted.slice(0, 3);
 
 }
 
-var friendFirstLetterCount;
 
-var friendsCount;
+var genderCount = function(array){
+    return array.reduce(function(acc, current){
+        let gender = current.gender;
+        if(gender){
+            acc += 1
+        }
 
-var topThreeTags;
+    }, {})
 
-var genderCount;
+};
 
 //////////////////////////////////////////////////////////////////////
 // DON'T REMOVE THIS CODE ////////////////////////////////////////////
