@@ -84,7 +84,18 @@ var averageBalance = function(array){
 };
 
 
-var firstLetterCount;
+var firstLetterCount = function(array, letter){
+    let sum = 0;
+    for(var i = 0; i < array.length; i++){
+        
+        if(array[i].name[0] === letter){
+            sum += 1;
+        }
+
+    }
+    return sum;
+
+}
 
 var friendFirstLetterCount;
 
