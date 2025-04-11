@@ -176,11 +176,14 @@ var topThreeTags = function(array){
 
 
 var genderCount = function(array){
-    return array.reduce(function(acc, current){
-        let gender = current.gender;
-        if(gender){
-            acc += 1
+    return array.reduce(function(acc, current){//use reduce on array 
+        let gender = current.gender;//set variable equal to gender in array
+        if(acc[gender]){//checks if gender already exist as a key in our accumulator object
+            acc[gender]++
+        }else{
+            acc[gender] = 1
         }
+        return acc;
 
     }, {})
 
